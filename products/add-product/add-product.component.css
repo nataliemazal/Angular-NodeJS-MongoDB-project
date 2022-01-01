@@ -1,0 +1,27 @@
+form {
+  width: 500px;
+  margin: auto;
+  text-align: left;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+input,
+button,
+label {
+  width: 150px;
+  box-sizing: border-box;
+  font-size: 10pt;
+  margin-bottom: 15px;
+}
+select {
+  width: 100px;
+}
+
+span {
+  display: block;
+
+  color: red;
+  font-size: smaller;
+}

@@ -1,0 +1,21 @@
+<div>
+  <header>
+    <div class="header">
+      <div style="font-size: 24pt">Shopping online</div>
+      <div>
+        <ng-container *ngIf="!user">
+          <span>Hello Stranger</span>
+        </ng-container>
+        <ng-container *ngIf="user">
+          <span>Hello {{ user.firstName }}</span>
+
+          <button mat-raised-button (click)="logoutBtn($event)">Logout</button>
+        </ng-container>
+      </div>
+    </div>
+    <hr />
+  </header>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>

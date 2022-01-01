@@ -1,0 +1,89 @@
+<div class="orderContainer">
+  <div class="cart">
+    <p><a routerLink="/productsPage">Back to shop</a></p>
+    <p *ngIf="!cartItems">your cart is empty</p>
+    <div *ngIf="cartItems">
+      <div *ngFor="let i of cartItems" class="item-area">
+        <p>Product Name : {{ i.product?.productName }}</p>
+        <p>{{ i.quantity }} units</p>
+        <p>unit price: {{ i.product?.price }}</p>
+        <img [src]="imageUrl + i.product?.image" />
+      </div>
+
+      <div class="total">total price : {{ totalAmount }}</div>
+    </div>
+  </div>
+
+  <div class="order">
+    <form (submit)="createOrder()" [formGroup]="orderForm">
+      <p>shipping details</p>
+      <label for="city">City: </label>
+      <input
+        type="text"
+        id="city"
+        name="city"
+        [formControl]="cityControl"
+        (dblclick)="setdetails($event)"
+      />
+      <span *ngIf="cityControl.errors?.required && cityControl.touched"
+        >Missing city.</span
+      >
+
+      <label for="street">Street: </label>
+      <input
+        type="text"
+        id="street"
+        name="street"
+        [formControl]="streetControl"
+        (dblclick)="setdetails($event)"
+      />
+      <span *ngIf="streetControl.errors?.required && streetControl.touched"
+        >Missing street.</span
+      >
+
+      <label for="shippingDate">Shipping Date: </label>
+      <input
+        type="date"
+        id="shippingDate"
+        name="shippingDate"
+        [formControl]="shippingDateControl"
+        (change)="validDate($event)"
+      />
+
+      <span
+        *ngIf="
+          shippingDateControl.errors?.required && shippingDateControl.touched
+        "
+        >Missing shipping date.</span
+      >
+      <span
+        *ngIf="
+          shippingDateControl.errors?.incorrect && shippingDateControl.touched
+        "
+        >choose another date.</span
+      >
+
+      <p>payment</p>
+
+      <label for="creditCard">Credit Card: </label>
+      <input
+        type="text"
+        id="creditCard"
+        name="creditCard"
+        [formControl]="creditCardControl"
+      />
+      <span
+        *ngIf="creditCardControl.errors?.required && creditCardControl.touched"
+        >Missing credit card.</span
+      >
+      <span
+        *ngIf="creditCardControl.errors?.pattern && creditCardControl.touched"
+        >Invalid credit card.</span
+      >
+
+      <button mat-raised-button color="primary" type="submit">
+        send order
+      </button>
+    </form>
+  </div>
+</div>

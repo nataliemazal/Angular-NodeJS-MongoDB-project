@@ -1,0 +1,29 @@
+<div class="home">
+  <div><app-login></app-login></div>
+
+  <img src="assets/images/home-gif.gif" />
+
+  <div class="home-content">
+    <p>Avalable products in our store : {{ productsLenght }}</p>
+
+    <p>Total orders in our store : {{ totalOrders }}</p>
+
+    <br />
+    <div *ngIf="user">
+      <div *ngIf="userStatus">
+        <p *ngIf="userStatus.text">
+          {{ userStatus.text }}
+        </p>
+
+        <br />
+        <p *ngIf="userStatus.totalOpenCart">
+          Total Price: {{ userStatus.totalOpenCart }}
+        </p>
+      </div>
+      <br />
+      <button mat-raised-button color="primary" (click)="startBtn()">
+        {{ orderBtn }}
+      </button>
+    </div>
+  </div>
+</div>

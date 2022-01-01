@@ -1,0 +1,21 @@
+form {
+  width: 500px;
+  margin: auto;
+  text-align: left;
+  padding: 25px;
+}
+
+input,
+button,
+label {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: x-large;
+  margin-bottom: 15px;
+}
+
+span {
+  display: block;
+  color: red;
+  font-size: smaller;
+}

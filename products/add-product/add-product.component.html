@@ -1,0 +1,53 @@
+<h1>Add Product</h1>
+<form (submit)="addProduct()" [formGroup]="addProductForm">
+  <label for="productName">Product Name:</label>
+  <input
+    type="text"
+    id="productName"
+    name="productName"
+    [formControl]="addProductNameControl"
+  />
+  <span
+    *ngIf="
+      addProductNameControl.errors?.required && addProductNameControl.touched
+    "
+    >Missing product name.</span
+  >
+
+  <label for="price">Product Price:</label>
+  <input
+    type="number"
+    id="price"
+    name="price"
+    [formControl]="addPriceControl"
+  />
+  <span *ngIf="addPriceControl.errors?.required && addPriceControl.touched"
+    >Missing price.</span
+  >
+  <label for="categoryId">Category:</label>
+
+  <select id="categoryId" name="categoryId" [formControl]="addCategoryControl">
+    <option *ngFor="let c of categories" value="{{ c._id }}">
+      {{ c.categoryName }}
+    </option>
+  </select>
+
+  <span
+    *ngIf="addCategoryControl.errors?.required && addCategoryControl.touched"
+    >Missing category.</span
+  >
+  <label for="imageFile">Image: </label>
+  <input
+    type="file"
+    id="imageFile"
+    name="imageFile"
+    accept="image/png"
+    [formControl]="addImageControl"
+    (change)="saveImage($event)"
+  />
+  <span *ngIf="addImageControl.errors?.required && addImageControl.touched"
+    >Missing image.</span
+  >
+
+  <input type="submit" value="add" />
+</form>

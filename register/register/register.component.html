@@ -1,0 +1,110 @@
+<mat-stepper linear #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Fill out your details</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input
+          matInput
+          placeholder=" First name"
+          formControlName="firstNameController"
+          required
+          [(ngModel)]="user.firstName"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input
+          matInput
+          placeholder="Last name, First name"
+          formControlName="lastName"
+          required
+          [(ngModel)]="user.lastName"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>ID</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="your id"
+          formControlName="id"
+          required
+          [(ngModel)]="user.userID"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email-User Name</mat-label>
+        <input
+          type="email"
+          matInput
+          placeholder="Email"
+          formControlName="userName"
+          required
+          [(ngModel)]="user.userName"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          matInput
+          placeholder="Your password"
+          formControlName="password"
+          required
+          [(ngModel)]="user.password"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Confirm Password</mat-label>
+        <input
+          type="password"
+          matInput
+          placeholder="Confirm Your password"
+          formControlName="confirmPass"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" [optional]="isOptional">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>City</mat-label>
+        <mat-select
+          matInput
+          formControlName="secondCtrl"
+          required
+          [(ngModel)]="user.city"
+        >
+          <mat-option>city ...</mat-option>
+          <mat-option *ngFor="let c of cities" value="{{ c }}">{{
+            c
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Street</mat-label>
+        <input
+          matInput
+          formControlName="secondCtrl"
+          placeholder="street"
+          required
+          [(ngModel)]="user.street"
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext (click)="register()">Register</button>
+      </div>
+    </form>
+  </mat-step>
+</mat-stepper>
